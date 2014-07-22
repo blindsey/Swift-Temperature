@@ -7,34 +7,17 @@
 //
 
 import UIKit
-import MessageUI
 
-class ViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class ViewController: UIViewController {
 
-    @IBOutlet var fahrenheitField: UITextField
-    @IBOutlet var centigradeField: UITextField
+    @IBOutlet weak var fahrenheitField: UITextField!
+    @IBOutlet weak var centigradeField: UITextField!
     let numberFormatter = NSNumberFormatter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
         fahrenheitField.becomeFirstResponder()
-    }
-
-    @IBAction func onMailTap(sender: UIBarButtonItem) {
-        var controller = MFMailComposeViewController();
-        controller.setSubject("Test Subject")
-        controller.setToRecipients([ "michaelellison@gmail.com" ])
-        controller.setMessageBody("HI", isHTML: false)
-        controller.mailComposeDelegate = self
-        presentViewController(controller, animated: true) {}
-    }
-
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError) {
-        dismissViewControllerAnimated(true, completion: nil)
-        if result.value == MFMailComposeResultSent.value {
-            UIAlertView(title: "Mail Sent", message: nil, delegate: nil, cancelButtonTitle: "OK").show()
-        }
     }
 
     @IBAction func editingDidBegin(sender: UITextField) {
